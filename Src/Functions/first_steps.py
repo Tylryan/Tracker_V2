@@ -16,10 +16,10 @@ def file_checking():
     # Checks to see if "records.csv" is in the current directory
     no_record = False
     no_backup = False
-    if 'Src/UserData/records.json' not in files_in_directory:
+    if 'records.json' not in files_in_directory:
         no_record = True
     # Checks to see if "backup.csv" is in the current directory
-    if 'Src/UserData/backup_records.json' not in files_in_directory:
+    if 'backup_records.json' not in files_in_directory:
         no_backup = True
 
     # Creates csv files if both are not there
@@ -29,7 +29,7 @@ def file_checking():
         if 'n' in new_files:
             print('No new files were created')
             print('You are now leaving this program')
-            time.sleep(2)
+            time.sleep(1)
             os.sys.exit()
         else:
 
@@ -53,7 +53,7 @@ def first_data_entry():
                                      'Python 01/01/25 1.5: ').lower().split()
 
         # Creating the new dataframe.
-        new_record = pd.DataFrame(
+        first_record = pd.DataFrame(
             {
                 'Subject': [subject],
                 'Date': [date],
@@ -61,10 +61,15 @@ def first_data_entry():
             }
         )
         # Appending the new record to the dataframe
-        historical_data = historical_data.append(new_record)
+        historical_data = historical_data.append(first_record)
+        print(historical_data)
+        historical_data.set_index('Date', inplace=True)
+        print(historical_data)
         # Turning these dataframes into json files
-        historical_data.to_json('./Src/UserData/records.json')
-        historical_data.to_json('./Src/UserData/backup_records.json')
+        historical_data.to_json(
+            './Src/UserData/records.json', orient="columns")
+        historical_data.to_json(
+            './Src/UserData/backup_records.json', orient="columns")
 
 
 if __name__ == '__main__':

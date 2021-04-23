@@ -2,6 +2,8 @@
 
 from Src.Functions.first_steps import file_checking, first_data_entry
 from Src.Functions.preprocessing import clear_terminal, json_to_user_dataframe
+from Src.Functions.saving_data import save_record, backup_record
+import pandas as pd
 # TODO
 # 1. Use Json to store files, then pull them in as dataframes.
 # 2. Create Classes as much as possible
@@ -59,6 +61,8 @@ Or Type in a number below.
 #     - Computational DataFrame: Easier to do computations on
 proceed = True
 while proceed == True:
+    historical_records = json_to_user_dataframe('Src/UserData/records.json')
+    print(historical_records)
     first_input = input('What would you like to do? ').lower().split()
     user_choice = first_input[0]
     stop_conditions = [
@@ -74,7 +78,12 @@ while proceed == True:
         break
     # If the user inserts a subject, data, and time
     elif len(first_input) == 3:
-        subject, date, hours = first_input
+        save_option = input('Would You like to save? [Y/n] ')
+        if 'n' in save_option:
+            print('Not Saving.')
+            break
+        else:
+            save_record(first_input, historical_records)
         print('You have entered in a subject, date, and time')
 
     # Stopwatch
