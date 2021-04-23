@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+from Src.Functions.first_steps import file_checking, first_data_entry
+from Src.Functions.preprocessing import clear_terminal, json_to_user_dataframe
 # TODO
 # 1. Use Json to store files, then pull them in as dataframes.
 # 2. Create Classes as much as possible
@@ -26,11 +28,11 @@
 # this project. After all, this is just practice.
 
 # Function that checks to make sure they have the right files
-
-
+file_checking()  # Works as of 04/23/21
 # Function that creates their first data
+first_data_entry()  # Works as of 04/23/21
 
-
+clear_terminal()
 # Main Menu
 print("""
 Enter in a record formatted like: Python 01/01/21 1.5 \n
@@ -39,8 +41,8 @@ Or Type in a number below.
 (1) Stopwatch
 (2) Time Calculator
 (3) Tracked Subjects
-(4) Last 5 Entries
-(5) Stats and Charts
+(4) Stats and Charts
+(5) Last 5 Entries
 (6) Backup Save
 (7) Remove Entry
 (8) Help
