@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
-from Src.Functions.first_steps import file_checking, first_data_entry
-from Src.Functions.preprocessing import clear_terminal, json_to_user_dataframe
-from Src.Functions.saving_data import save_record, backup_record
 import pandas as pd
 import json
 import time
+
+from Src.Functions.first_steps import file_checking, first_data_entry
+from Src.Functions.preprocessing import clear_terminal, json_to_user_dataframe
+from Src.Functions.saving_data import save_record, backup_record
+from Src.Functions.Analysis.basic_df_analysis import hours_by_subject
 # TODO
 # 1. Use Json to store files, then pull them in as dataframes.
 # 2. Create Classes as much as possible
@@ -128,6 +130,9 @@ while proceed == True:
 
     elif user_choice == '4':
         print('You have chosen to list your Stats and Charts')
+        # hours_by_subject_df = hours_by_subject(historical_records)
+        # print(hours_by_subject_df)
+        input('Press Enter')
 
     elif user_choice == '5':
         print('You have chosen to list your last 5 entries')
