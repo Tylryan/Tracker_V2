@@ -5,6 +5,7 @@ from Src.Functions.preprocessing import clear_terminal, json_to_user_dataframe
 from Src.Functions.saving_data import save_record, backup_record
 import pandas as pd
 import json
+import time
 # TODO
 # 1. Use Json to store files, then pull them in as dataframes.
 # 2. Create Classes as much as possible
@@ -98,7 +99,21 @@ while proceed == True:
             break
         else:
             save_record(first_input, historical_records)
-        print('You have entered in a subject, date, and time')
+            # This print statement helps verify that nothing went wrong with the code.
+            check_df = json_to_user_dataframe(
+                'Src/UserData/records.json')[0]
+            print(check_df.head())
+            # Asking the user if they would like to back up their files
+            backup = input('\n\nWould You like to back this data up? [Y/n] ')
+            # A conditional statement depending on the user's input
+            if 'n' in backup.lower():
+                # If the user doesn't want to backup their data, then this elif statement will be activated
+                # Confirming to the user that their data has not been backed up
+                print('\n\nBackup database has NOT been updated.')
+                # This give the user time to digest the the message above
+                time.sleep(1.0)
+            else:
+                backup_record(historical_records)
 
     # Stopwatch
 

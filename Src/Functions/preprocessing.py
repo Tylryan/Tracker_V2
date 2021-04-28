@@ -6,10 +6,10 @@ import os
 
 def json_to_user_dataframe(file_location):
     user_df = pd.read_json(file_location)  # Reads json as a pandas dataframe
-    df = user_df
+    computation_df = user_df
     # user_df = df.set_index('Date')
     # user_df.sort_index(inplace=True)
-    return user_df, df
+    return user_df, computation_df
 
 # dataframe to json
 # Literally `df.to_json('file.json')`
