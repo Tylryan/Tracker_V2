@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 from Src.Functions.preprocessing import clear_terminal
 import os
 import time
@@ -14,7 +15,7 @@ def file_checking():
 
     # Gets all the files and directories in the current directory
     files_in_directory = [file for file in os.listdir(
-        'Src/UserData/')]  # this works
+        'tracker_cli/Src/UserData/')]  # this works
     # Checks to see if "records.csv" is in the current directory
     no_record = False
     no_backup = False
@@ -36,15 +37,16 @@ def file_checking():
         else:
 
             # This just tells the terminal (mac/linux)
-            os.system('touch Src/UserData/records.json')
-            os.system('touch Src/UserData/backup_records.json')
+            os.system('touch tracker_cli/Src/UserData/records.json')
+            os.system('touch tracker_cli/Src/UserData/backup_records.json')
             # input('Press "Enter" to continue ')
 
 ##################################### Checking if there is any data in those files ##############################################################################
 
 
 def first_data_entry():
-    empty_records_file = os.stat("./Src/UserData/records.json").st_size == 0
+    empty_records_file = os.stat(
+        "tracker_cli/Src/UserData/records.json").st_size == 0
     if empty_records_file == True:
         print('\n\nLet\'s enter in a new record')
         input('Press "Enter" to continue')
@@ -76,7 +78,7 @@ def first_data_entry():
         # historical_data = historical_data.append(first_record)
         # print(historical_data)
         # Turning these dataframes into json files
-        with open('./Src/UserData/records.json', 'w') as fp:
+        with open('tracker_cli/Src/UserData/records.json', 'w') as fp:
             json.dump(genesis_entry, fp)
 
         # genesis_entry.to_json('./Src/UserData/records.json')

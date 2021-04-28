@@ -14,7 +14,7 @@ def save_record(first_input, historical_records):
     historical_records['Date'].append(date)
     historical_records['Subject'].append(subject)
     historical_records['Hours'].append(hours)
-    with open('./Src/UserData/records.json', 'w') as fp:
+    with open('tracker_cli/Src/UserData/records.json', 'w') as fp:
         json.dump(historical_records, fp)
     print('Record Saved')
     # historical_records.to_json('Src/UserData/records.json')
@@ -37,7 +37,7 @@ def backup_record(historical_records):
     try:
         # If the user wants to backup their data, this is the backup save that saves to a file called "backup.csv"
 
-        with open('./Src/UserData/backup_records.json', 'w') as fp:
+        with open('tracker_cli/Src/UserData/backup_records.json', 'w') as fp:
             json.dump(historical_records, fp)
 
         # historical_records['Date'] = pd.to_datetime(

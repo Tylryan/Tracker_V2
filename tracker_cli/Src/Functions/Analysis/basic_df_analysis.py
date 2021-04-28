@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 
+import tracker_cli.Src.Functions.preprocessing as preprocessing
 # historical_records = json_to_user_dataframe('../UserData/records.json')
 
 
 def hours_by_subject(historical_records):
-    df = json_to_user_dataframe(historical_records)[1]
+    df = preprocessing.json_to_user_dataframe(historical_records)[1]
     # Grouping the data by subject and summing the hours. Then turning that into a dataframe.
     total_hours_df = df.groupby('Subject').Hours.sum()
     # Renaming the column to "Hours Studied"
