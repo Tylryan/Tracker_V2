@@ -4,6 +4,7 @@ import pandas as pd
 import json
 import time
 
+import tracker_cli
 from tracker_cli.Src.Functions.first_steps import file_checking, first_data_entry
 from tracker_cli.Src.Functions.preprocessing import clear_terminal, json_to_user_dataframe
 from tracker_cli.Src.Functions.saving_data import save_record, backup_record

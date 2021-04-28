@@ -13,8 +13,6 @@ setup(
     install_requires=['pandas', 'matplotlib'],
     packages=find_packages(),
     entry_points={
-        'console_scripts': [
-            'tracker-cli = tracker_cli.main:main'
-        ]
+        'console_scripts': ['tracker-cli=tracker_cli.main:main']
     }
 )
