@@ -19,6 +19,9 @@
 - [ ] Add **color** to the terminal outputs. (Green : Good, Red: Bad, Yellow: Warn)
     - [Rich](https://www.youtube.com/watch?v=JrGFQp9njas)
         - Seems like the most flexible and diverse.
+        - Example: `print("[red]Error[/red]!")`. This would obviously change the color to red
+        - ### Tables, Prettier Errors, "inspect"
+        - This is an incredible package. Should be used on all projects.
     - [Colorama](https://www.youtube.com/watch?v=u51Zjlnui4Y)
 - [x ] Make a Cli tool that does things without having to actually open the program
     - The [Typer](https://www.youtube.com/watch?v=we3907q1xz4) module might be helpful.
