@@ -4,6 +4,8 @@ from Src.Functions.preprocessing import clear_terminal
 import os
 import time
 import pandas as pd
+import time
+import json
 
 
 def file_checking():
@@ -47,29 +49,41 @@ def first_data_entry():
         print('\n\nLet\'s enter in a new record')
         input('Press "Enter" to continue')
         # Create the column names "Subject","Date","Hours" in the empty records.csv.
-        historical_data = pd.DataFrame(columns=['Subject', 'Date', 'Hours'])
+        genesis_entry = {
+            'Date': [],
+            'Subject': [],
+            'Hours': []
+        }
+
         print('\n\nPlease use a space as the delimiter!!')
         subject, date, hours = input('\nType in the SUBJECT DATE and HOURS spent in this format\n\n'
                                      'Python 01/01/25 1.5: ').lower().split()
 
-        # Creating the new dataframe.
-        first_record = pd.DataFrame(
-            {
-                'Subject': [subject],
-                'Date': [date],
-                'Hours': [hours]
-            }
-        )
-        # Appending the new record to the dataframe
-        historical_data = historical_data.append(first_record)
-        print(historical_data)
-        historical_data.set_index('Date', inplace=True)
-        print(historical_data)
+        genesis_entry['Date'].append(date)
+        genesis_entry['Subject'].append(subject)
+        genesis_entry['Hours'].append(hours)
+        print(genesis_entry)
+        input('Enter')
+        # # Creating the new dataframe.
+        # first_record = pd.DataFrame(
+        #     {
+        #         'Subject': [subject],
+        #         'Date': [date],
+        #         'Hours': [hours]
+        #     }
+        # )
+        # # Appending the new record to the dataframe
+        # historical_data = historical_data.append(first_record)
+        # print(historical_data)
         # Turning these dataframes into json files
-        historical_data.to_json(
-            './Src/UserData/records.json', orient="columns")
-        historical_data.to_json(
-            './Src/UserData/backup_records.json', orient="columns")
+        with open('./Src/UserData/records.json', 'w') as fp:
+            json.dump(genesis_entry, fp)
+
+        # genesis_entry.to_json('./Src/UserData/records.json')
+        # historical_data.to_json(
+        #     './Src/UserData/backup_records.json')
+
+        input('Press enter')
 
 
 if __name__ == '__main__':

@@ -4,6 +4,7 @@ from Src.Functions.first_steps import file_checking, first_data_entry
 from Src.Functions.preprocessing import clear_terminal, json_to_user_dataframe
 from Src.Functions.saving_data import save_record, backup_record
 import pandas as pd
+import json
 # TODO
 # 1. Use Json to store files, then pull them in as dataframes.
 # 2. Create Classes as much as possible
@@ -36,23 +37,6 @@ first_data_entry()  # Works as of 04/23/21
 
 clear_terminal()
 # Main Menu
-print("""
-Enter in a record formatted like: Python 01/01/21 1.5 \n
-Or Type in a number below.
-
-(1) Stopwatch
-(2) Time Calculator
-(3) Tracked Subjects
-(4) Stats and Charts
-(5) Last 5 Entries
-(6) Backup Save
-(7) Remove Entry
-(8) Help
-
-**********************************************************************
-(9) To exit the program
-**********************************************************************
-        """)
 
 # Create a function that.
 # 1. Reads Json
@@ -61,8 +45,33 @@ Or Type in a number below.
 #     - Computational DataFrame: Easier to do computations on
 proceed = True
 while proceed == True:
-    historical_records = json_to_user_dataframe('Src/UserData/records.json')
-    print(historical_records)
+    print("""
+    Enter in a record formatted like: Python 01/01/21 1.5 \n
+    Or Type in a number below.
+
+    (1) Stopwatch
+    (2) Time Calculator
+    (3) Tracked Subjects
+    (4) Stats and Charts
+    (5) Last 5 Entries
+    (6) Backup Save
+    (7) Remove Entry
+    (8) Help
+
+    **********************************************************************
+    (9) To exit the program
+    **********************************************************************
+            """)
+    # This should be an easy to read version of the dataframe.
+    # It should not be what I do computations on
+    # Don't use this in any computations
+    user_dataframe, computation_df = json_to_user_dataframe(
+        'Src/UserData/records.json')
+
+    with open('Src/UserData/records.json') as f:
+        historical_records = json.load(f)
+
+    print(user_dataframe)
     first_input = input('What would you like to do? ').lower().split()
     user_choice = first_input[0]
     stop_conditions = [
@@ -76,6 +85,11 @@ while proceed == True:
     if any(stop_conditions):
         print('You are leaving the program')
         break
+    elif len(first_input) > 3:
+        print('\nYou have entered too many arguments.')
+        print('The maximum number of arguments is 3.')
+        input('Press "Enter" to continue')
+        clear_terminal()
     # If the user inserts a subject, data, and time
     elif len(first_input) == 3:
         save_option = input('Would You like to save? [Y/n] ')
